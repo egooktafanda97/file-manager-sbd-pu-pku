@@ -1,0 +1,493 @@
+[{
+        "Kode": "0",
+        "Parent_Kode": "",
+        "Tipe": "Folder",
+        "Nama": "UMUM"
+    },
+    {
+        "Kode": "000.1",
+        "Parent_Kode": "0",
+        "Tipe": "Folder",
+        "Nama": "KETATAUSAHAAN DAN KERUMAHTANGGAAN"
+    },
+    {
+        "Kode": "000.1.1",
+        "Parent_Kode": "000.1",
+        "Tipe": "File",
+        "Nama": "Telekomunikasi"
+    },
+    {
+        "Kode": "000.1.2",
+        "Parent_Kode": "000.1",
+        "Tipe": "Folder",
+        "Nama": "Perjalanan Dinas Dalam Negeri"
+    },
+    {
+        "Kode": "000.1.2.1",
+        "Parent_Kode": "000.1.2",
+        "Tipe": "File",
+        "Nama": "Perjalanan Dinas Kepala Daerah"
+    },
+    {
+        "Kode": "000.1.2.2",
+        "Parent_Kode": "000.1.2",
+        "Tipe": "File",
+        "Nama": "Perjalanan Dinas DPRD"
+    },
+    {
+        "Kode": "000.1.2.3",
+        "Parent_Kode": "000.1.2",
+        "Tipe": "File",
+        "Nama": "Perjalanan Dinas Pegawai"
+    },
+    {
+        "Kode": "000.1.3",
+        "Parent_Kode": "000.1",
+        "Tipe": "Folder",
+        "Nama": "Perjalanan Dinas Luar Negeri"
+    },
+    {
+        "Kode": "000.1.3.1",
+        "Parent_Kode": "000.1.3",
+        "Tipe": "File",
+        "Nama": "Perjalanan Dinas Kepala Daerah"
+    },
+    {
+        "Kode": "000.1.3.2",
+        "Parent_Kode": "000.1.3",
+        "Tipe": "File",
+        "Nama": "Perjalanan Dinas DPRD"
+    },
+    {
+        "Kode": "000.1.3.3",
+        "Parent_Kode": "000.1.3",
+        "Tipe": "File",
+        "Nama": "Perjalanan Dinas Pegawai"
+    },
+    {
+        "Kode": "000.1.4",
+        "Parent_Kode": "000.1",
+        "Tipe": "File",
+        "Nama": "Penggunaan Fasilitas Kantor"
+    },
+    {
+        "Kode": "000.1.5",
+        "Parent_Kode": "000.1",
+        "Tipe": "File",
+        "Nama": "Rapat Pimpinan"
+    },
+    {
+        "Kode": "000.1.6",
+        "Parent_Kode": "000.1",
+        "Tipe": "File",
+        "Nama": "Penyediaan Konsumsi"
+    },
+    {
+        "Kode": "000.1.7",
+        "Parent_Kode": "000.1",
+        "Tipe": "Folder",
+        "Nama": "Pengurusan Kendaraan Dinas"
+    },
+    {
+        "Kode": "000.1.7.1",
+        "Parent_Kode": "000.1.7",
+        "Tipe": "File",
+        "Nama": "Pengurusan Surat-Surat Kendaraan Dinas"
+    },
+    {
+        "Kode": "000.1.7.2",
+        "Parent_Kode": "000.1.7",
+        "Tipe": "File",
+        "Nama": "Pemeliharaan dan Perbaikan"
+    },
+    {
+        "Kode": "000.1.7.3",
+        "Parent_Kode": "000.1.7",
+        "Tipe": "File",
+        "Nama": "Pengurusan Kehilangan dan Masalah Kendaraan"
+    },
+    {
+        "Kode": "000.1.8",
+        "Parent_Kode": "000.1",
+        "Tipe": "Folder",
+        "Nama": "Pemeliharaan Gedung, Taman, dan Peralatan Kantor"
+    },
+    {
+        "Kode": "000.1.8.1",
+        "Parent_Kode": "000.1.8",
+        "Tipe": "File",
+        "Nama": "Pertamanan/Landscape"
+    },
+    {
+        "Kode": "000.1.8.2",
+        "Parent_Kode": "000.1.8",
+        "Tipe": "File",
+        "Nama": "Penghijauan"
+    },
+    {
+        "Kode": "000.1.8.3",
+        "Parent_Kode": "000.1.8",
+        "Tipe": "File",
+        "Nama": "Perbaikan Gedung"
+    },
+    {
+        "Kode": "000.1.8.4",
+        "Parent_Kode": "000.1.8",
+        "Tipe": "File",
+        "Nama": "Perbaikan Peralatan Kantor"
+    },
+    {
+        "Kode": "000.1.8.5",
+        "Parent_Kode": "000.1.8",
+        "Tipe": "File",
+        "Nama": "Perbaikan Rumah Dinas/Wisma"
+    },
+    {
+        "Kode": "000.1.8.6",
+        "Parent_Kode": "000.1.8",
+        "Tipe": "File",
+        "Nama": "Kebersihan Gedung dan Taman"
+    },
+    {
+        "Kode": "000.1.9",
+        "Parent_Kode": "000.1",
+        "Tipe": "Folder",
+        "Nama": "Pengelolaan Jaringan Listrik, Air, Telepon, dan Komputer"
+    },
+    {
+        "Kode": "000.1.9.1",
+        "Parent_Kode": "000.1.9",
+        "Tipe": "File",
+        "Nama": "Perbaikan/Pemeliharaan"
+    },
+    {
+        "Kode": "000.1.9.2",
+        "Parent_Kode": "000.1.9",
+        "Tipe": "File",
+        "Nama": "Pemasangan"
+    },
+    {
+        "Kode": "000.1.10",
+        "Parent_Kode": "000.1",
+        "Tipe": "Folder",
+        "Nama": "Ketertiban dan Keamanan"
+    },
+    {
+        "Kode": "000.1.10.1",
+        "Parent_Kode": "000.1.10",
+        "Tipe": "File",
+        "Nama": "Pengamanan, Penjagaan, dan Pengawalan terhadap Pejabat, Kantor, dan Rumah Dinas"
+    },
+    {
+        "Kode": "000.1.10.2",
+        "Parent_Kode": "000.1.10",
+        "Tipe": "File",
+        "Nama": "Laporan Ketertiban dan Keamanan"
+    },
+    {
+        "Kode": "000.1.11",
+        "Parent_Kode": "000.1",
+        "Tipe": "File",
+        "Nama": "Administrasi Pengelolaan Parkir"
+    },
+    {
+        "Kode": "000.1.12",
+        "Parent_Kode": "000.1",
+        "Tipe": "File",
+        "Nama": "Administrasi Pakaian Dinas Pegawai, Satpam, Petugas Kebersihan, dan Pegawai Lainnya"
+    },
+    {
+        "Kode": "000.2",
+        "Parent_Kode": "0",
+        "Tipe": "Folder",
+        "Nama": "PERLENGKAPAN"
+    },
+    {
+        "Kode": "000.2.1",
+        "Parent_Kode": "000.2",
+        "Tipe": "Folder",
+        "Nama": "Inventarisasi dan Penyimpanan"
+    },
+    {
+        "Kode": "000.2.1.1",
+        "Parent_Kode": "000.2.1",
+        "Tipe": "File",
+        "Nama": "Data Hasil Inventarisasi dan Penyimpanan"
+    },
+    {
+        "Kode": "000.2.2",
+        "Parent_Kode": "000.2",
+        "Tipe": "Folder",
+        "Nama": "Pemeliharaan Peralatan Kantor"
+    },
+    {
+        "Kode": "000.2.2.1",
+        "Parent_Kode": "000.2.2",
+        "Tipe": "File",
+        "Nama": "Data Hasil Pemeliharaan Kantor"
+    },
+    {
+        "Kode": "000.2.2.2",
+        "Parent_Kode": "000.2.2",
+        "Tipe": "File",
+        "Nama": "Laporan dan Evaluasi Pemeliharaan Kantor"
+    },
+    {
+        "Kode": "000.2.3",
+        "Parent_Kode": "000.2",
+        "Tipe": "Folder",
+        "Nama": "Distribusi"
+    },
+    {
+        "Kode": "000.2.3.1",
+        "Parent_Kode": "000.2.3",
+        "Tipe": "File",
+        "Nama": "Barang Habis Pakai"
+    },
+    {
+        "Kode": "000.2.3.2",
+        "Parent_Kode": "000.2.3",
+        "Tipe": "File",
+        "Nama": "Barang Milik Daerah"
+    },
+    {
+        "Kode": "000.2.4",
+        "Parent_Kode": "000.2",
+        "Tipe": "Folder",
+        "Nama": "Penghapusan Barang Milik Daerah"
+    },
+    {
+        "Kode": "000.2.5",
+        "Parent_Kode": "000.2",
+        "Tipe": "Folder",
+        "Nama": "Pengelolaan Database Barang Milik Daerah"
+    },
+    {
+        "Kode": "000.3",
+        "Parent_Kode": "-",
+        "Tipe": "Folder",
+        "Nama": "PENGADAAN"
+    },
+    {
+        "Kode": "000.3.1",
+        "Parent_Kode": "000.3",
+        "Tipe": "File",
+        "Nama": "Rencana pengadaan Barang dan jasa (antara lain: Identifikasi dan analisis kebutuhan barang/jasa, penyusunan dan penetapan rencana penganggaran pengadaan, penetapan kebijakan umum, penyusunan kerangka Acuan Kerja (KAK), Pengumuman Rencana Umum Pengadaan)"
+    },
+    {
+        "Kode": "000.3.2",
+        "Parent_Kode": "000.3",
+        "Tipe": "File",
+        "Nama": "Pengadaan Langsung (antara lain: persiapan pemilihan penyedia, pelaksanaan pemilihan penyedia, penandatanganan kontrak, pelaksanaan kontrak)"
+    },
+    {
+        "Kode": "000.3.3",
+        "Parent_Kode": "000.3",
+        "Tipe": "File",
+        "Nama": "Pengadaan Tidak Langsung/Lelang (antara lain: persiapan pemilihan penyedia, pelaksanaan pemilihan penyedia, penandatanganan kontrak, pelaksanaan kontrak)"
+    },
+    {
+        "Kode": "000.3.4",
+        "Parent_Kode": "000.3",
+        "Tipe": "File",
+        "Nama": "Swakelola (antara lain: perencanaan, pelaksanaan dan evaluasi)"
+    },
+    {
+        "Kode": "000.3.5",
+        "Parent_Kode": "000.3",
+        "Tipe": "File",
+        "Nama": "Pengolahan Sistem Informasi Pengadaan (antara lain: Data base pengguna sistem informasi pengadaan barang/jasa, Data Base kontrak, Data Base Pengadaan Barang/jasa)"
+    },
+    {
+        "Kode": "000.3.6",
+        "Parent_Kode": "000.3",
+        "Tipe": "File",
+        "Nama": "Monitoring dan evaluasi pelaksanaan kebijakan dan pelaksanaan pengadaan (antara lain: Laporan Hasil Monitoring, Laporan hasil evaluasi)"
+    },
+    {
+        "Kode": "000.4",
+        "Parent_Kode": "0",
+        "Tipe": "Folder",
+        "Nama": "PERPUSTAKAAN"
+    },
+    {
+        "Kode": "000.4.1",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Kebijakan di bidang Perpustakaan yang dilakukan oleh Pemerintah Daerah"
+    },
+    {
+        "Kode": "000.4.2",
+        "Parent_Kode": "000.4",
+        "Tipe": "Sub Folder",
+        "Nama": "Deposit Bahan Pustaka (antara lain: Serah Simpan Karya Cetak dan Karya Rekam, Pangkalan Data Penerbit dan Pengusaha Rekaman, Terbitan Internasional dan Regional, Pemantauan Wajib Serah Simpan Karya Cetak dan Karya Rekam, Bibliografi dan Katalog)"
+    },
+    {
+        "Kode": "000.4.3",
+        "Parent_Kode": "000.4",
+        "Tipe": "Sub Folder",
+        "Nama": "Koleksi Pustaka (antara lain: Pembelian, Hibah, Hadiah, Tukar Menukar, Implementasi Undang-Undang KCKR, Terbitan Internal, Pendistribusian bahan pustaka surplus, Inventarisasi koleksi)"
+    },
+    {
+        "Kode": "000.4.4",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Pengolahan Bahan Pustaka"
+    },
+    {
+        "Kode": "000.4.5",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Pangkalan Data Katalog Koleksi"
+    },
+    {
+        "Kode": "000.4.6",
+        "Parent_Kode": "000.4",
+        "Tipe": "Folder",
+        "Nama": "Layanan Perpustakaan (antara lain: Keanggotaan, Peminjaman, Pengembangan gemar baca)"
+    },
+    {
+        "Kode": "000.4.7",
+        "Parent_Kode": "000.4",
+        "Tipe": "Folder",
+        "Nama": "Kerjasama Perpustakaan (antara lain: MoU, Perjanjian kerjasama, Partisipasi organisasi profesi dan kerjasama internasional)"
+    },
+    {
+        "Kode": "000.4.8",
+        "Parent_Kode": "000.4",
+        "Tipe": "Folder",
+        "Nama": "Pengembangan Implementasi Teknologi Informasi Perpustakaan (antara lain: Pengembangan situs web, Pengembangan kemas ulang informasi multimedia, Pengembangan program aplikasi perpustakaan, Pengembangan pangkalan data kepustakaan digital)"
+    },
+    {
+        "Kode": "000.4.9",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Pangkalan Data Layanan Perpustakaan"
+    },
+    {
+        "Kode": "000.4.10",
+        "Parent_Kode": "000.4",
+        "Tipe": "Folder",
+        "Nama": "Konservasi (antara lain: Perawatan Bahan Perpustakaan, Perbaikan Bahan Perpustakaan, Penjilidan Bahan Perpustakaan)"
+    },
+    {
+        "Kode": "000.4.11",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Reprografi (Mikrofilm, Reproduksi Foto)"
+    },
+    {
+        "Kode": "000.4.12",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Transformasi Digital"
+    },
+    {
+        "Kode": "000.4.13",
+        "Parent_Kode": "000.4",
+        "Tipe": "File",
+        "Nama": "Kurasi Digital"
+    },
+    {
+        "Kode": "000.4.14",
+        "Parent_Kode": "000.4",
+        "Tipe": "Folder",
+        "Nama": "Pengembangan Perpustakaan (antara lain: Perpustakaan Umum, Perpustakaan Khusus, Perpustakaan Sekolah, Perpustakaan Perguruan Tinggi)"
+    },
+    {
+        "Kode": "000.5",
+        "Parent_Kode": "0",
+        "Tipe": "Folder",
+        "Nama": "KEARSIPAN"
+    },
+    {
+        "Kode": "000.5.1",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Kebijakan di bidang kearsipan yang dilakukan oleh Pemerintah Daerah"
+    },
+    {
+        "Kode": "000.5.2",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Pembinaan Kearsipan (antara lain: Pengembangan Profesi Arsiparis, Bimbingan Konsultasi Arsiparis, Penilaian Arsiparis, Pemilihan Arsiparis Teladan, Data Base Arsiparis, Bimbingan Konsultasi Kearsipan, Supervisi dan Evaluasi)"
+    },
+    {
+        "Kode": "000.5.3",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Pengelolaan Arsip Dinamis (antara lain: Penciptaan, Pemberkasan Arsip Aktif, Penataan Arsip Inaktif, Penggunaan, Autentikasi Arsip Dinamis)"
+    },
+    {
+        "Kode": "000.5.4",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Program Arsip Vital (antara lain: Identifikasi Arsip Vital, Perlindungan dan Pengamanan Arsip Vital, Penyelamatan Arsip Vital dan Pemulihan Arsip Vital)"
+    },
+    {
+        "Kode": "000.5.5",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Pengelolaan Arsip Terjaga (antara lain: Daftar Identifikasi Arsip Terjaga, Daftar Berkas Arsip Terjaga, Penetapan Arsip Yang Dimusnahkan, Berita Acara Pemusnahan Arsip)"
+    },
+    {
+        "Kode": "000.5.6",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Penyusutan Arsip (antara lain: Pemindahan Arsip, Pemusnahan Arsip, Penyerahan Arsip Statis)"
+    },
+    {
+        "Kode": "000.5.7",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Alih Media Arsip (antara lain: Kebijakan alih media, Autentikasi, Berita Acara, Daftar Arsip yang alih mediakan)"
+    },
+    {
+        "Kode": "000.5.8",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Data Base Pengelolaan Arsip Dinamis (antara lain: Data Base Pengelolaan Arsip Aktif, Data Base Pengelolaan Arsip Inaktif)"
+    },
+    {
+        "Kode": "000.5.9",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Pengelolaan Arsip Statis (antara lain: Akuisisi, Penghargaan dan Imbalan, Sejarah Lisan, Daftar Pencarian Arsip Statis)"
+    },
+    {
+        "Kode": "000.5.10",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Jasa Kearsipan (antara lain konsultasi kearsipan, manual kearsipan, penataan arsip, otomasi kearsipan, penyimpanan arsip, perawatan dan pemeliharaan arsip)"
+    },
+    {
+        "Kode": "000.5.11",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Pengelolaan SIKN dan JIKN"
+    },
+    {
+        "Kode": "000.5.12",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Pelindungan dan penyelamatan arsip akibat bencana"
+    },
+    {
+        "Kode": "000.5.13",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Penyelamatan arsip Perangkat Daerah digabung dan/atau dibubarkan"
+    },
+    {
+        "Kode": "000.5.14",
+        "Parent_Kode": "000.5",
+        "Tipe": "File",
+        "Nama": "Penerbitan izin penggunaan arsip yang bersifat tertutup"
+    },
+    {
+        "Kode": "000.5.15",
+        "Parent_Kode": "000.5",
+        "Tipe": "Folder",
+        "Nama": "Pengawasan Kearsipan (antara lain: Pengawasan Kearsipan Internal, Pengawasan Kearsipan Eksternal, Sanksi)"
+    }
+]

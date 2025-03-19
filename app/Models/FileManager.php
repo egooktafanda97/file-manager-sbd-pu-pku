@@ -83,4 +83,55 @@ class FileManager extends Model
     {
         return $this->hasMany(FileFavorite::class, 'file_manager_id');
     }
+
+    public static function extensions()
+    {
+        return [
+            // Gambar
+            'jpg',
+            'jpeg',
+            'png',
+            'gif',
+            'bmp',
+            'svg',
+            'webp',
+            // Dokumen
+            'pdf',
+            'doc',
+            'docx',
+            'xls',
+            'xlsx',
+            'ppt',
+            'pptx',
+            'txt',
+            'csv',
+            // Arsip
+            'zip',
+            'rar',
+            '7z',
+            'tar',
+            'gz',
+            // Audio
+            'mp3',
+            'wav',
+            'aac',
+            'ogg',
+            'flac',
+            // Video
+            'mp4',
+            'avi',
+            'mkv',
+            'mov',
+            'wmv',
+            'flv',
+            // Kode & Lainnya
+            'html',
+            'css',
+            'js',
+            'php',
+            'json',
+            'xml',
+            'sql'
+        ];
+    }
 }

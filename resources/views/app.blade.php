@@ -60,6 +60,9 @@
 
     <!-- Layout JS -->
     <script src="{{ asset('assets/js/layout.js') }}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" rel="stylesheet" type="text/css">
+
     @livewireStyles
     {{-- vite --}}
     <link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" rel="stylesheet" type="text/css">
@@ -474,8 +477,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script></script>
+
     @livewireScripts
     @stack('scripts')
+    @session('success')
+        <script>
+            Toastify({
+                text: "{{ Session::get('success') }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: 'right',
+                backgroundColor: "#2dce89",
+                stopOnFocus: true,
+            }).showToast();
+        </script>
+    @endsession
+    @if (Session::has('error'))
+        <script>
+            Toastify({
+                text: "{{ Session::get('error') }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: 'right',
+                backgroundColor: "#f5365c",
+                stopOnFocus: true,
+            }).showToast();
+        </script>
+    @endif
+
 </body>
 
 </html>

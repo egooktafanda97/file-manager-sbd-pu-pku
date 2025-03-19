@@ -205,6 +205,7 @@
         </div>
     </div>
 
+    {{-- new folder --}}
     <div aria-hidden="true" aria-labelledby="staticBackdropLabelFolder" class="modal fade" data-bs-backdrop="static"
         data-bs-keyboard="false" id="staticBackdropFolder" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -227,7 +228,6 @@
                             <label for="file">Code Clasification <strong class="text-red-500">*</strong></label>
                             <input class="form-control" id="folder_code" name="folder_code" type="text">
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary ml-3 mr-3" data-bs-dismiss="modal" type="button">Close</button>
@@ -238,11 +238,12 @@
         </div>
     </div>
 
+    {{-- update data --}}
     <div aria-hidden="true" aria-labelledby="staticBackdropLabelUpdate" class="modal fade" data-bs-backdrop="static"
         data-bs-keyboard="false" id="staticBackdropLabelUpdate" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form action="{{ route('file-manager.updated') }}" method="POST">
+                <form action="{{ route('file-manager.updated') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <input name="this_uuid" type="hidden" value="{{ $this_uuid ?? null }}">
                     <input id="_uuid-update" name="uuid" type="hidden">
@@ -258,12 +259,22 @@
                             <label for="update_name" id="_update_name">Folder Name</label>
                             <input class="form-control" id="update_name" name="update_name" type="text">
                         </div>
+
+                        <div id="input-file-update">
+                        </div>
+
                         <div class="form-group mb-3">
                             <label for="update_code" id="_update_code">Code Clasification <strong
                                     class="text-red-500">*</strong></label>
                             <input class="form-control" id="update_code" name="update_code" type="text">
                         </div>
 
+
+                        <div class="form-group mb-3" id="dynamic-inputs-update">
+
+                        </div>
+                        <button class="btn btn-success mb-3" id="add-input-update" type="button">+ Add Info
+                            Update</button>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary ml-3 mr-3" data-bs-dismiss="modal" type="button">Close</button>
@@ -274,6 +285,7 @@
         </div>
     </div>
 
+    {{-- info modal --}}
     <div aria-labelledby="offcanvasRightLabel" class="offcanvas offcanvas-end" id="offcanvasRight" tabindex="-1">
         <div class="offcanvas-header">
             <h5 id="offcanvasRightLabel">
@@ -399,10 +411,35 @@
 
         $(document).ready(function() {
             let inputIndex = 0;
-
             $("#add-input").click(function() {
                 inputIndex++;
                 $("#dynamic-inputs").append(`
+                <div class="flex flex-col bg-gray-100 p-3 rounded shadow" id="input-group-${inputIndex}">
+                    <div class="flex space-x-2">
+                        <input class="border border-gray-300 rounded px-4 py-2 flex-1" type="text" name="extra_info[${inputIndex}][name]" placeholder="Name" required>
+                        <input class="border border-gray-300 rounded px-4 py-2 flex-1" type="text" name="extra_info[${inputIndex}][description]" placeholder="Description" required>
+                        <button type="button" class="remove-input text-red-500 hover:text-red-700" data-index="${inputIndex}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `);
+            });
+
+            $(document).on("click", ".remove-input", function() {
+                let index = $(this).data("index");
+                $("#input-group-" + index).remove();
+            });
+        });
+
+
+        $(document).ready(function() {
+
+            $("#add-input-update").click(function() {
+                let inputIndex = $("#dynamic-inputs-update").children("div").length;
+                inputIndex++;
+
+                $("#dynamic-inputs-update").append(`
                 <div class="flex flex-col bg-gray-100 p-3 rounded shadow" id="input-group-${inputIndex}">
                     <div class="flex space-x-2">
                         <input class="border border-gray-300 rounded px-4 py-2 flex-1" type="text" name="extra_info[${inputIndex}][name]" placeholder="Name" required>
@@ -447,11 +484,43 @@
             $("#staticBackdropLabelUpdateLabels").html(types == "folder" ? "Update Folder" : "Update File");
             $("#_update_name").html(types == "folder" ? "Folder Name" : "File Name");
             $("#_update_code").html(types == "folder" ? "Code Clasification" : "Code Clasification");
+            if (types != "folder") {
+                $("#input-file-update").html(`
+                <div class="form-group mb-3">
+                <label for="file">Update File</label>
+                <input class="form-control" id="file" name="file" type="file">
+                </div>`);
+            } else {
+                $("#input-file-update").html(``);
+            }
+
             $("#_uuid-update").val(uuid);
             axios.get(`/file-manager/${uuid}/first`)
                 .then((response) => {
                     $("#update_name").val(response.data.name);
                     $("#update_code").val(response.data.code_clasification);
+
+                    // Menghapus input yang sudah ada (jika ada) sebelum menambahkan data baru
+                    $("#dynamic-inputs-update").empty();
+
+                    // Menambahkan data yang sudah ada ke dalam input
+                    if (response.data.info && response.data.info.length > 0) {
+                        response.data.info.forEach((info, index) => {
+                            inputIndex = index + 1;
+                            $("#dynamic-inputs-update").append(`
+                                <div class="flex flex-col bg-gray-100 p-3 rounded shadow" id="input-group-${inputIndex}">
+                                    <div class="flex space-x-2">
+                                        <input class="border border-gray-300 rounded px-4 py-2 flex-1" type="text" name="extra_info[${inputIndex}][name]" value="${info.name}" placeholder="Name" required>
+                                        <input class="border border-gray-300 rounded px-4 py-2 flex-1" type="text" name="extra_info[${inputIndex}][description]" value="${info.value}" placeholder="Description" required>
+                                        <button type="button" class="remove-input text-red-500 hover:text-red-700" data-index="${inputIndex}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    }
+
                 })
                 .catch((error) => {
                     console.error(error);

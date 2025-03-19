@@ -297,7 +297,9 @@ class FileManagerController extends Controller
     // read by uuid 
     public function getFirst($uuid)
     {
-        $file = FileManager::where("uuid", $uuid)->first();
+        $file = FileManager::where("uuid", $uuid)
+            ->with('info')
+            ->first();
         if (!$file) {
             return response()->json(['message' => 'File not found.'], 404);
         }
@@ -348,78 +350,123 @@ class FileManagerController extends Controller
     //update
     public function update(Request $request)
     {
-        $file = FileManager::where("uuid", $request->uuid)->first();
+        DB::beginTransaction();
+        try {
+            $file = FileManager::where("uuid", $request->uuid)->first();
 
-        if (!$file) {
-            return redirect()->route('file-manager.index')
-                ->with('error', 'File or folder not found.');
-        }
+            if (!$file) {
+                return redirect()->route('file-manager.index')
+                    ->with('error', 'File or folder not found.');
+            }
+            $extra_info = $request->extra_info;
+            if ($extra_info && is_array($extra_info)) {
+                FileInfo::where('file_manager_id', $file->id)->delete();
+                foreach ($extra_info as $key => $value) {
+                    FileInfo::create([
+                        'uuid' => Str::uuid(),
+                        'user_id' => auth()->id() ?? 1,
+                        'file_manager_id' => $file->id,
+                        'name' => $value['name'],
+                        'type' => 'text',
+                        'value' => $value['description'],
+                    ]);
+                }
+            }
 
-        // Ambil parent path (kosong jika root)
-        $paths = $file->parent_id ? implode('/', $file->getParentHierarchy()->pluck('name')->toArray()) : '';
+            // Ambil parent path (kosong jika root)
+            $paths = $file->parent_id ? implode('/', $file->getParentHierarchy()->pluck('name')->toArray()) : '';
 
-        // Cek apakah ada file atau folder lain dengan nama yang sama dalam parent yang sama
-        $exists = FileManager::where('parent_id', $file->parent_id)
-            ->where('name', $request->update_name)
-            ->where('id', '!=', $file->id)
-            ->exists();
+            // Cek apakah ada file atau folder lain dengan nama yang sama dalam parent yang sama
+            $exists = FileManager::where('parent_id', $file->parent_id)
+                ->where('name', $request->update_name)
+                ->where('id', '!=', $file->id)
+                ->exists();
 
-        if ($exists) {
-            return redirect()->route('file-manager.index', ['uuid' => $request->uuid])
-                ->with('error', 'A file or folder with the same name already exists in this folder.');
-        }
+            if ($exists) {
+                DB::rollBack();
+                return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                    ->with('error', 'A file or folder with the same name already exists in this folder.');
+            }
 
-        // Path lama & baru
-        $oldPath = $paths ? $paths . '/' . $file->name : $file->name;
-        $newPath = $paths ? $paths . '/' . $request->update_name : $request->update_name;
+            // Path lama & baru
+            $oldPath = $paths ? $paths : $file->name;
+            $pathParent = FileManager::where("id", $file->parent_id)->first();
+            $parentPath = $pathParent ? implode('/', $pathParent->getParentHierarchy()->pluck('name')->toArray()) : '';
+            $newPath = $parentPath ? $parentPath . '/' . $request->update_name : $request->update_name;
 
-        // Cek apakah ini folder atau file
-        if ($file->type === 'folder') {
-            $oldFullPath = storage_path("app/public/{$oldPath}");
-            $newFullPath = storage_path("app/public/{$newPath}");
+            // Cek apakah ini folder atau file
+            if ($file->type === 'folder') {
+                $oldFullPath = storage_path("app/public/{$oldPath}");
+                $newFullPath = storage_path("app/public/{$newPath}");
 
-            if (File::exists($oldFullPath)) {
-                if (!File::move($oldFullPath, $newFullPath)) {
-                    return redirect()->route('file-manager.index', ['uuid' => $request->uuid])
-                        ->with('error', 'Failed to rename the folder in storage.');
+                if (File::exists($oldFullPath)) {
+                    if (!File::move($oldFullPath, $newFullPath)) {
+                        DB::rollBack();
+                        return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                            ->with('error', 'Failed to rename the folder in storage.');
+                    }
+                    $file->update([
+                        'name' => $request->update_name,
+                        'code_clasification' => $request->update_code,
+                        'paths' => $newPath, // Simpan path baru di database
+                    ]);
+                } else {
+                    DB::rollBack();
+                    return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                        ->with('error', 'Folder does not exist.');
                 }
             } else {
-                return redirect()->route('file-manager.index', ['uuid' => $request->uuid])
-                    ->with('error', 'Folder does not exist.');
-            }
-        } else {
-            // Jika ini file
-            $oldFullPath = storage_path("app/public/{$oldPath}");
-            $ext = pathinfo($file->name, PATHINFO_EXTENSION);
+                if ($request->hasFile('file')) {
+                    $fileUpload = $request->file('file');
+                    $fileName = $fileUpload->getClientOriginalName();
+                    $filePath = $fileUpload->storeAs($parentPath, $fileName, 'public');
+                    $file->update([
+                        'name' => $fileName,
+                        'paths' => $filePath,
+                        'size' => $fileUpload->getSize(),
+                        'mime_type' => $fileUpload->getMimeType() ?? null,
+                    ]);
+                } else {
+                    $oldFullPath = storage_path("app/public/{$oldPath}");
+                    $ext = pathinfo($file->name, PATHINFO_EXTENSION);
+                    $extrename = pathinfo($request->update_name, PATHINFO_EXTENSION);
+                    $extrename = strtolower($extrename);
+                    $newFileName = '';
+                    if (in_array($extrename, FileManager::extensions())) {
+                        $newPath = $newPath ? "{$newPath}" : "{$request->update_name}";
+                        $newFileName = $request->update_name;
+                    } else {
+                        $newPath = $newPath ? "{$newPath}.{$ext}" : "{$request->update_name}.{$ext}";
+                        $newFileName = "{$request->update_name}.{$ext}";
+                    }
+                    $newFullPath = storage_path("app/public/{$newPath}");
 
-            if ($ext) {
-                $newPath = $paths ? "{$paths}/{$request->update_name}.{$ext}" : "{$request->update_name}.{$ext}";
-            } else {
-                $newPath = $paths ? "{$paths}/{$request->update_name}" : "{$request->update_name}";
-            }
-
-            $newFullPath = storage_path("app/public/{$newPath}");
-
-            if (File::exists($oldFullPath)) {
-                if (!File::move($oldFullPath, $newFullPath)) {
-                    return redirect()->route('file-manager.index', ['uuid' => $request->uuid])
-                        ->with('error', 'Failed to rename the file in storage.');
+                    if (File::exists($oldFullPath)) {
+                        if (!File::move($oldFullPath, $newFullPath)) {
+                            DB::rollBack();
+                            return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                                ->with('error', 'Failed to rename the file in storage.');
+                        }
+                    } else {
+                        DB::rollBack();
+                        return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                            ->with('error', 'File does not exist.');
+                    }
+                    $file->update([
+                        'name' => $newFileName,
+                        'code_clasification' => $request->update_code,
+                        'paths' => $newPath, // Simpan path baru di database
+                    ]);
                 }
-            } else {
-                return redirect()->route('file-manager.index', ['uuid' => $request->uuid])
-                    ->with('error', 'File does not exist.');
             }
+            DB::commit();
+            return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                ->with('success', 'File or folder updated successfully.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
+                ->with('error', 'Failed to upload file. Error: ' . $th->getMessage());
         }
-
-        // Jika rename berhasil, update database
-        $file->update([
-            'name' => $request->update_name,
-            'code_clasification' => $request->update_code,
-            'paths' => $newPath, // Simpan path baru di database
-        ]);
-
-        return redirect()->route('file-manager.index', ['uuid' => $request->uuid])
-            ->with('success', 'File or folder updated successfully.');
     }
 
 
@@ -471,7 +518,6 @@ class FileManagerController extends Controller
                 ->with('success', 'File uploaded successfully.');
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
             return redirect()->route('file-manager.index', ['uuid' => $request->this_uuid])
                 ->with('error', 'Failed to upload file. Error: ' . $th->getMessage());
         }
@@ -490,7 +536,6 @@ class FileManagerController extends Controller
         $path = storage_path("app/public/{$paths}");
 
         if (!File::exists($path)) {
-            dd($path);
             return redirect()->back()
                 ->with('error', 'File not found.');
         }
